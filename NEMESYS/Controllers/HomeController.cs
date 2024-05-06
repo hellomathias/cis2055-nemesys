@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NEMESYS.Areas.Identity.Data;
 using NEMESYS.Models;
 
 namespace NEMESYS.Controllers;
@@ -7,14 +9,17 @@ namespace NEMESYS.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager)
     {
         _logger = logger;
+        this._userManager = userManager;
     }
 
     public IActionResult Index()
     {
+        ViewData["UserID"] = _userManager.GetUserId(this.User);
         return View();
     }
 
