@@ -6,8 +6,18 @@
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
-<form id="account" method="post">
+@if (TempData["ReturnMessage"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["ReturnMessage"]
+    </div>
+}
+else
+{
     <h2>Welcome back!</h2>
+}
+
+<form id="account" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
     <div class="form-floating mb-3">
         <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -25,9 +35,7 @@
             @Html.DisplayNameFor(m => m.Input.RememberMe)
         </label>
     </div>
-    <div>
-        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-    </div>
+    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
 </form>
 
 @section Scripts {
