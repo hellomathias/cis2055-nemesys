@@ -1,14 +1,45 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NEMESYS.Data;
 using System;
 using System.ComponentModel.DataAnnotations;
+using NEMESYS.Areas.Identity.Pages.Reports.Models;
+
 
 namespace NEMESYS.Areas.Identity.Pages.Reports
 {
     [Authorize]
     public class ReportPageModel : PageModel
     {
+        private readonly AuthDbContext _context;
+
+        public ReportPageModel(AuthDbContext context)
+        {
+            _context = context;
+        }
         public Report CurrentReport { get; set; }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            if (CurrentReport.ReportId == 0)
+            {
+                // Assuming ReportId is your primary key and it's set to 0 for new entries
+                _context.Reports.Add(CurrentReport);
+            }
+            else
+            {
+                _context.Reports.Update(CurrentReport);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToPage("./Index"); // or your redirect page after submission
+        }
 
         public class Report
         {
@@ -52,10 +83,12 @@ namespace NEMESYS.Areas.Identity.Pages.Reports
             public string ReporterPhone { get; set; }
 
             public string OptionalPhotoPath { get; set; }
+            public int ReportId { get; internal set; }
         }
 
         public void OnGet()
         {
+
             // Initialize CurrentReport with a default instance
             CurrentReport = new Report
             {
