@@ -1,8 +1,9 @@
-﻿namespace NEMESYS.Areas.Identity.Pages.Reports.Models
+namespace NEMESYS.Areas.Identity.Pages.Reports.Models
 {
 
     public class Report
     {
+        public int ReportId { get; set; } // primary key
         public DateTime DateOfReport { get; set; }
         public string Location { get; set; }
         public DateTime DateSpotted { get; set; }
