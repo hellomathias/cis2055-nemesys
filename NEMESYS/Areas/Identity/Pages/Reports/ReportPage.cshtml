@@ -1,63 +1,41 @@
-﻿@page
-@using Microsoft.AspNetCore.Identity
-@using NEMESYS.Areas.Identity.Data
-@model NEMESYS.Areas.Identity.Pages.Reports.ReportPageModel
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using NEMESYS.Areas.Identity.Pages.Reports.Models;
 
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
-@{
-    ViewData["Title"] = "Report an Incident";
-    var isAuthenticated = User.Identity != null && User.Identity.IsAuthenticated;
-}
-
-@if (!isAuthenticated)
+namespace NEMESYS.Areas.Pages.Reports
 {
-    <div class="alert alert-warning">
-        To report an incident, please <a asp-area="Identity" asp-page="/Account/Login">log in</a>.
-    </div>
-}
-else
-{
-    <h2>Report Details</h2>
-
-    <dl>
-        <dt>Date of Report</dt>
-        <dd>@Model.CurrentReport.DateOfReport.ToString("yyyy-MM-dd")</dd>
-
-        <dt>Location</dt>
-        <dd>@Model.CurrentReport.Location</dd>
-
-        <dt>Date Spotted</dt>
-        <dd>@Model.CurrentReport.DateSpotted.ToString("yyyy-MM-dd")</dd>
-
-        <dt>Time Spotted</dt>
-        <dd>@Model.CurrentReport.TimeSpotted</dd>
-
-        <dt>Type of Hazard</dt>
-        <dd>@Model.CurrentReport.TypeOfHazard</dd>
-
-        <dt>Description</dt>
-        <dd>@Model.CurrentReport.Description</dd>
-
-        <dt>Status</dt>
-        <dd>@Model.CurrentReport.Status</dd>
-
-        <dt>Reporter Email</dt>
-        <dd>@Model.CurrentReport.ReporterEmail</dd>
-
-        <dt>Reporter Phone (optional)</dt>
-        <dd>@Model.CurrentReport.ReporterPhone</dd>
-    </dl>
-
-    @if (!string.IsNullOrEmpty(Model.CurrentReport.OptionalPhotoPath))
+    public class ReportPageModel : PageModel
     {
-        <img src="@Model.CurrentReport.OptionalPhotoPath" alt="Report Photo" />
-    }
+        [BindProperty]
+        public Report CurrentReport { get; set; } // The report being displayed or edited
 
-    @using (Html.BeginForm("UpdateStatus", "Report", FormMethod.Post))
-    {
-        <input type="hidden" name="newStatus" value="Closed" />
-        <input type="submit" value="Close Report" />
+        public void OnGet()
+        {
+            // Initialization or loading of CurrentReport for display/editing
+            CurrentReport = new Report
+            {
+                DateOfReport = DateTime.Today,
+                Location = "Initial Location",
+                DateSpotted = DateTime.Today,
+                TimeSpotted = DateTime.Now.ToString("HH:mm"),
+                TypeOfHazard = "Unsafe Condition",
+                Description = "Initial description",
+                Status = "Open", // Assuming status is also managed
+                ReporterEmail = "reporter@example.com"
+            };
+        }
+
+        // Example of a method that might be called by an investigator to update the status
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page(); // Return the same page if validation fails
+            }
+
+            // Here you would save the CurrentReport to the database
+
+            return RedirectToPage("./Index"); // Redirect to another page after successful post
+        }
     }
 }
