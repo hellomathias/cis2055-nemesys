@@ -1,41 +1,110 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using NEMESYS.Areas.Identity.Pages.Reports.Models;
+@page
+@using Microsoft.AspNetCore.Identity
+@using NEMESYS.Areas.Identity.Data
+@model NEMESYS.Areas.Identity.Pages.Reports.ReportPageModel
+@using Microsoft.AspNetCore.Authorization
 
-namespace NEMESYS.Areas.Pages.Reports
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Report an Incident";
+}
+
+<style>
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 4px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    button {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+
+@* Check if the user is authenticated *@
+@if (!User.Identity.IsAuthenticated)
 {
-    public class ReportPageModel : PageModel
-    {
-        [BindProperty]
-        public Report CurrentReport { get; set; } // The report being displayed or edited
+    <div class="alert alert-warning">
+        To report an incident, please <a asp-area="Identity" asp-page="/Account/Login">log in</a>.
+    </div>
+}
+else
+{
+    @* Check if the user is in the "Reporter" role *@
+    var isReporter = await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Reporter");
 
-        public void OnGet()
+    if (!isReporter)
+    {
+        <div class="alert alert-danger">
+            You do not have permission to access this page. Only users with the "Reporter" role can report an incident.
+        </div>
+    }
+    else
+    {
+        <h2>Report Details</h2>
+
+        <form method="post">
+            <label for="dateOfReport">Date of Report</label>
+            <input type="date" id="dateOfReport" name="DateOfReport" value="@Model.CurrentReport.DateOfReport.ToString("yyyy-MM-dd")">
+
+            <label for="location">Location</label>
+            <input type="text" id="location" name="Location" value="@Model.CurrentReport.Location">
+
+            <label for="dateSpotted">Date Spotted</label>
+            <input type="date" id="dateSpotted" name="DateSpotted" value="@Model.CurrentReport.DateSpotted.ToString("yyyy-MM-dd")">
+
+            <label for="timeSpotted">Time Spotted</label>
+            <input type="time" id="timeSpotted" name="TimeSpotted" value="@Model.CurrentReport.TimeSpotted">
+
+            <label for="typeOfHazard">Type of Hazard</label>
+            <input type="text" id="typeOfHazard" name="TypeOfHazard" value="@Model.CurrentReport.TypeOfHazard">
+
+            <label for="description">Description</label>
+            <textarea id="description" name="Description">@Model.CurrentReport.Description</textarea>
+
+            <label for="status">Status</label>
+            <input type="text" id="status" name="Status" value="@Model.CurrentReport.Status">
+
+            <label for="reporterEmail">Reporter Email</label>
+            <input type="email" id="reporterEmail" name="ReporterEmail" value="@Model.CurrentReport.ReporterEmail">
+
+            <label for="reporterPhone">Reporter Phone (optional)</label>
+            <input type="tel" id="reporterPhone" name="ReporterPhone" value="@Model.CurrentReport.ReporterPhone">
+
+            <button type="submit">Submit Report</button>
+        </form>
+
+        @if (!string.IsNullOrEmpty(Model.CurrentReport.OptionalPhotoPath))
         {
-            // Initialization or loading of CurrentReport for display/editing
-            CurrentReport = new Report
-            {
-                DateOfReport = DateTime.Today,
-                Location = "Initial Location",
-                DateSpotted = DateTime.Today,
-                TimeSpotted = DateTime.Now.ToString("HH:mm"),
-                TypeOfHazard = "Unsafe Condition",
-                Description = "Initial description",
-                Status = "Open", // Assuming status is also managed
-                ReporterEmail = "reporter@example.com"
-            };
+            <img src="@Model.CurrentReport.OptionalPhotoPath" alt="Report Photo" />
         }
 
-        // Example of a method that might be called by an investigator to update the status
-        public IActionResult OnPost()
+        @using (Html.BeginForm("UpdateStatus", "Report", FormMethod.Post))
         {
-            if (!ModelState.IsValid)
-            {
-                return Page(); // Return the same page if validation fails
-            }
-
-            // Here you would save the CurrentReport to the database
-
-            return RedirectToPage("./Index"); // Redirect to another page after successful post
+            <input type="hidden" name="newStatus" value="Closed" />
+            <input type="submit" value="Close Report" />
         }
     }
 }
