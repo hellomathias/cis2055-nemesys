@@ -1,0 +1,78 @@
+﻿@page
+@model NEMESYS.Areas.Identity.Pages.Reports.ReportDetailsModel
+@{
+    ViewData["Title"] = "Report Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Date of Report
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.DateOfReport.ToString("yyyy-MM-dd")
+        </dd>
+        <dt class="col-sm-2">
+            Location
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.Location
+        </dd>
+        <dt class="col-sm-2">
+            Date Spotted
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.DateSpotted.ToString("yyyy-MM-dd")
+        </dd>
+        <dt class="col-sm-2">
+            Time Spotted
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.TimeSpotted
+        </dd>
+        <dt class="col-sm-2">
+            Type of Hazard
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.TypeOfHazard
+        </dd>
+        <dt class="col-sm-2">
+            Description
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.Description
+        </dd>
+        <dt class="col-sm-2">
+            Status
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.Status
+        </dd>
+        <dt class="col-sm-2">
+            Reporter Email
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.ReporterEmail
+        </dd>
+        <dt class="col-sm-2">
+            Reporter Phone
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Report.ReporterPhone
+        </dd>
+        @if (!string.IsNullOrEmpty(Model.Report.OptionalPhotoPath))
+        {
+            <dt class="col-sm-2">
+                Photo
+            </dt>
+            <dd class="col-sm-10">
+                <img src="@Model.Report.OptionalPhotoPath" alt="Report Photo" class="img-fluid" />
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-page="./ReportBoard" class="btn btn-secondary">Back to Report Board</a>
+</div>
