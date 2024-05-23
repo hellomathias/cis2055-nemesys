@@ -1,28 +1,18 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NEMESYS.Areas.Identity.Data;
-using System.Reflection.Emit;
+using NEMESYS.Areas.Identity.Pages.Reports.Models;
+using NEMESYS.Models;
 
-namespace NEMESYS.Data;
-
-public class AuthDbContext : IdentityDbContext<ApplicationUser>
+namespace NEMESYS.Data
 {
-    public AuthDbContext(DbContextOptions<AuthDbContext> options)
-        : base(options)
+    public class AuthDbContext : IdentityDbContext<ApplicationUser>
     {
-
-    }
-    public DbSet<Areas.Identity.Pages.Reports.Models.Report> Reports { get; set; }
-
-
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        base.OnModelCreating(builder);
-
-        builder.Entity<Areas.Identity.Pages.Reports.Models.Report>(entity =>
+        public AuthDbContext(DbContextOptions<AuthDbContext> options)
+            : base(options)
         {
-            entity.Property(e => e.Description).IsRequired();
-        });
+        }
+
+        public DbSet<Report> Reports { get; set; }
     }
 }
