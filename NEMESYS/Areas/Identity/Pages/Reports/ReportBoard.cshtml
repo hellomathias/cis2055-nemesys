@@ -1,0 +1,62 @@
+﻿@page
+@model NEMESYS.Areas.Identity.Pages.Reports.ReportBoardModel
+@inject Microsoft.AspNetCore.Identity.UserManager<NEMESYS.Areas.Identity.Data.ApplicationUser> UserManager
+@inject Microsoft.AspNetCore.Identity.SignInManager<NEMESYS.Areas.Identity.Data.ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Report Board";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>@ViewData["Title"]</h2>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a asp-page="/Reports/ReportPage" class="btn btn-primary">Report an Incident</a>
+    }
+    else
+    {
+        <a asp-page="/Account/Login" asp-route-returnUrl="@Url.Page("/Reports/ReportPage")" asp-route-returnMessage="To report an incident, you must be logged in as a Reporter." asp-route-showWelcomeBack="false" class="btn btn-primary">Report an Incident</a>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Date Spotted</th>
+            <th>Type of Hazard</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model.Reports)
+        {
+            var isUserReport = report.UserId == UserManager.GetUserId(User);
+            <tr>
+                <td>@report.Location</td>
+                <td>@report.DateSpotted.ToString("yyyy-MM-dd")</td>
+                <td>@report.TypeOfHazard</td>
+                <td>@report.Status</td>
+                <td>
+                    <a asp-page="./ReportDetails" asp-route-id="@report.ReportId" class="btn btn-primary">View Details</a>
+                    @if (isUserReport)
+                    {
+                        <a asp-page="./EditReport" asp-route-id="@report.ReportId" class="btn btn-secondary">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@report.ReportId" style="display:inline;" onsubmit="return confirmDelete()">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this report?');
+        }
+    </script>
+}
