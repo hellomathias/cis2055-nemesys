@@ -12,7 +12,7 @@
 }
 
 <style>
-    input, textarea {
+    input, textarea, select {
         width: 100%;
         padding: 8px;
         margin: 4px 0;
@@ -26,7 +26,7 @@
         font-weight: bold;
     }
 
-    button {
+    .submit-report-btn {
         width: 100%;
         background-color: #4CAF50;
         color: white;
@@ -37,13 +37,11 @@
         cursor: pointer;
     }
 
-    button:hover {
-        background-color: #45a049;
-    }
+        .submit-report-btn:hover {
+            background-color: #45a049;
+        }
 </style>
 
-
-@* Check if the user is authenticated *@
 @if (!User.Identity.IsAuthenticated)
 {
     <div class="alert alert-warning">
@@ -52,59 +50,80 @@
 }
 else
 {
-    @* Check if the user is in the "Reporter" role *@
-    var isReporter = await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Reporter");
+    var currentUser = await UserManager.GetUserAsync(User);
 
-    if (!isReporter)
+    if (currentUser == null)
     {
         <div class="alert alert-danger">
-            You do not have permission to access this page. Only users with the "Reporter" role can report an incident.
+            Unable to retrieve user information. Please try again.
         </div>
     }
     else
     {
-        <h2>Report Details</h2>
+        var isReporter = await UserManager.IsInRoleAsync(currentUser, "Reporter");
 
-        <form method="post">
-            <label for="dateOfReport">Date of Report</label>
-            <input type="date" id="dateOfReport" name="DateOfReport" value="@Model.CurrentReport.DateOfReport.ToString("yyyy-MM-dd")">
-
-            <label for="location">Location</label>
-            <input type="text" id="location" name="Location" value="@Model.CurrentReport.Location">
-
-            <label for="dateSpotted">Date Spotted</label>
-            <input type="date" id="dateSpotted" name="DateSpotted" value="@Model.CurrentReport.DateSpotted.ToString("yyyy-MM-dd")">
-
-            <label for="timeSpotted">Time Spotted</label>
-            <input type="time" id="timeSpotted" name="TimeSpotted" value="@Model.CurrentReport.TimeSpotted">
-
-            <label for="typeOfHazard">Type of Hazard</label>
-            <input type="text" id="typeOfHazard" name="TypeOfHazard" value="@Model.CurrentReport.TypeOfHazard">
-
-            <label for="description">Description</label>
-            <textarea id="description" name="Description">@Model.CurrentReport.Description</textarea>
-
-            <label for="status">Status</label>
-            <input type="text" id="status" name="Status" value="@Model.CurrentReport.Status">
-
-            <label for="reporterEmail">Reporter Email</label>
-            <input type="email" id="reporterEmail" name="ReporterEmail" value="@Model.CurrentReport.ReporterEmail">
-
-            <label for="reporterPhone">Reporter Phone (optional)</label>
-            <input type="tel" id="reporterPhone" name="ReporterPhone" value="@Model.CurrentReport.ReporterPhone">
-
-            <button type="submit">Submit Report</button>
-        </form>
-
-        @if (!string.IsNullOrEmpty(Model.CurrentReport.OptionalPhotoPath))
+        if (!isReporter)
         {
-            <img src="@Model.CurrentReport.OptionalPhotoPath" alt="Report Photo" />
+            <div class="alert alert-danger">
+                You do not have permission to access this page. Only users with the "Reporter" role can report an incident.
+            </div>
         }
-
-        @using (Html.BeginForm("UpdateStatus", "Report", FormMethod.Post))
+        else
         {
-            <input type="hidden" name="newStatus" value="Closed" />
-            <input type="submit" value="Close Report" />
+            <h2>Report Details</h2>
+
+            <form method="post" enctype="multipart/form-data">
+                <label asp-for="CurrentReport.DateOfReport"></label>
+                <input asp-for="CurrentReport.DateOfReport" class="form-control">
+                <span asp-validation-for="CurrentReport.DateOfReport" class="text-danger"></span>
+
+                <label asp-for="CurrentReport.Location"></label>
+                <input asp-for="CurrentReport.Location" class="form-control">
+                <span asp-validation-for="CurrentReport.Location" class="text-danger"></span>
+
+                <label asp-for="CurrentReport.DateSpotted"></label>
+                <input asp-for="CurrentReport.DateSpotted" class="form-control">
+                <span asp-validation-for="CurrentReport.DateSpotted" class="text-danger"></span>
+
+                <label asp-for="CurrentReport.TimeSpotted"></label>
+                <input asp-for="CurrentReport.TimeSpotted" class="form-control">
+                <span asp-validation-for="CurrentReport.TimeSpotted" class="text-danger"></span>
+
+                <label asp-for="CurrentReport.TypeOfHazard"></label>
+                <select asp-for="CurrentReport.TypeOfHazard" class="form-control">
+                    <option value="Unsafe Act">Unsafe Act</option>
+                    <option value="Unsafe Condition">Unsafe Condition</option>
+                    <option value="Unsafe Equipment">Unsafe Equipment</option>
+                    <option value="Unsafe Structure">Unsafe Structure</option>
+                </select>
+                <span asp-validation-for="CurrentReport.TypeOfHazard" class="text-danger"></span>
+
+                <label asp-for="CurrentReport.Description"></label>
+                <textarea asp-for="CurrentReport.Description" class="form-control"></textarea>
+                <span asp-validation-for="CurrentReport.Description" class="text-danger"></span>
+
+                <label asp-for="CurrentReport.Status"></label>
+                <select asp-for="CurrentReport.Status" class="form-control">
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Closed">Closed</option>
+                </select>
+                <span asp-validation-for="CurrentReport.Status" class="text-danger"></span>
+
+                <label asp-for="CurrentReport.ReporterEmail"></label>
+                <input asp-for="CurrentReport.ReporterEmail" class="form-control">
+                <span asp-validation-for="CurrentReport.ReporterEmail" class="text-danger"></span>
+
+                <label asp-for="CurrentReport.ReporterPhone"></label>
+                <input asp-for="CurrentReport.ReporterPhone" class="form-control">
+                <span asp-validation-for="CurrentReport.ReporterPhone" class="text-danger"></span>
+
+                <label>Upload Photo</label>
+                <input type="file" name="Photo" class="form-control">
+                <span asp-validation-for="Photo" class="text-danger"></span>
+
+                <button type="submit" class="submit-report-btn">Submit Report</button>
+            </form>
         }
     }
 }
