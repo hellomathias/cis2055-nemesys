@@ -1,0 +1,68 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using NEMESYS.Areas.Identity.Data
+@model NEMESYS.Areas.Identity.Pages.Investigations.InvestigationPageModel
+@using Microsoft.AspNetCore.Authorization
+@{
+}
+@{
+    ViewData["Title"] = "Investigation Details";
+}
+
+<h2>Investigation Details</h2>
+
+<form method="post">
+    <div style="margin-bottom: 20px;">
+        <label asp-for="CurrentInvestigation.Description" style="font-weight: bold;">Description of Investigation</label>
+        <textarea asp-for="CurrentInvestigation.Description" class="form-control" style="width: 100%; height: 100px;"></textarea>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="CurrentInvestigation.DateOfAction" style="font-weight: bold;">Date of Action</label>
+        <input asp-for="CurrentInvestigation.DateOfAction" class="form-control" type="date" style="width: 100%;" />
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="CurrentInvestigation.InvestigatorEmail" style="font-weight: bold;">Investigator Email</label>
+        <input asp-for="CurrentInvestigation.InvestigatorEmail" class="form-control" type="email" style="width: 100%;" />
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="CurrentInvestigation.InvestigatorPhone" style="font-weight: bold;">Investigator Phone (optional)</label>
+        <input asp-for="CurrentInvestigation.InvestigatorPhone" class="form-control" type="tel" style="width: 100%;" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Investigation</button>
+</form>
+
+@section Styles {
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+    </style>
+}
