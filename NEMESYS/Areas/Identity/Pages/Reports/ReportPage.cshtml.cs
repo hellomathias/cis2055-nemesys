@@ -7,7 +7,7 @@ namespace NEMESYS.Areas.Pages.Reports
     public class ReportPageModel : PageModel
     {
         [BindProperty]
-        public Report CurrentReport { get; set; } // The report being displayed or edited
+        public Report CurrentReport { get; set; } 
 
         public void OnGet()
         {
@@ -25,7 +25,6 @@ namespace NEMESYS.Areas.Pages.Reports
             };
         }
 
-        // Example of a method that might be called by an investigator to update the status
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
