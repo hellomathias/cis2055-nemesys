@@ -12,7 +12,7 @@
         @TempData["ReturnMessage"]
     </div>
 }
-else
+else if (TempData["ShowWelcomeBack"] != null && (bool)TempData["ShowWelcomeBack"])
 {
     <h2>Welcome back!</h2>
 }
@@ -35,6 +35,7 @@ else
             @Html.DisplayNameFor(m => m.Input.RememberMe)
         </label>
     </div>
+    <input type="hidden" asp-for="ReturnUrl" />
     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
 </form>
 
