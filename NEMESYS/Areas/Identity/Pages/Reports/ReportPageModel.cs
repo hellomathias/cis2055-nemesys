@@ -1,109 +1,105 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using NEMESYS.Data;
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using NEMESYS.Areas.Identity.Data;
 using NEMESYS.Areas.Identity.Pages.Reports.Models;
-
 
 namespace NEMESYS.Areas.Identity.Pages.Reports
 {
-    [Authorize]
     public class ReportPageModel : PageModel
     {
         private readonly AuthDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<ReportPageModel> _logger;
 
-        public ReportPageModel(AuthDbContext context)
+        public ReportPageModel(AuthDbContext context, UserManager<ApplicationUser> userManager, ILogger<ReportPageModel> logger)
         {
             _context = context;
+            _userManager = userManager;
+            _logger = logger;
         }
+
+        [BindProperty]
         public Report CurrentReport { get; set; }
+
+        [BindProperty]
+        public IFormFile? Photo { get; set; }
+
+        public void OnGet()
+        {
+            CurrentReport = new Report
+            {
+                DateOfReport = DateTime.Today,
+                Status = "Open"
+            };
+        }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                _logger.LogError("Model state is invalid.");
+                foreach (var state in ModelState)
+                {
+                    if (state.Value.Errors.Count > 0)
+                    {
+                        _logger.LogError($"{state.Key}: {string.Join(", ", state.Value.Errors.Select(e => e.ErrorMessage))}");
+                    }
+                }
                 return Page();
             }
 
-            if (CurrentReport.ReportId == 0)
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
             {
-                // Assuming ReportId is your primary key and it's set to 0 for new entries
-                _context.Reports.Add(CurrentReport);
+                _logger.LogError("User is not logged in.");
+                return Challenge();
+            }
+
+            _logger.LogInformation($"User ID: {user.Id}");
+            CurrentReport.UserId = user.Id;
+
+            if (Photo != null && Photo.Length > 0)
+            {
+                _logger.LogInformation($"Photo uploaded: {Photo.FileName}");
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                Directory.CreateDirectory(uploadsFolder); // Ensure the folder exists
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Photo.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Photo.CopyToAsync(fileStream);
+                }
+
+                CurrentReport.OptionalPhotoPath = "/uploads/" + uniqueFileName;
+                _logger.LogInformation($"Photo saved at: {CurrentReport.OptionalPhotoPath}");
             }
             else
             {
-                _context.Reports.Update(CurrentReport);
+                _logger.LogWarning("No photo uploaded or photo is empty.");
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToPage("./Index"); // or your redirect page after submission
-        }
-
-        public class Report
-        {
-            [Required]
-            [StringLength(100, ErrorMessage = "Title is too long.")]
-            public string Title { get; set; }
-
-            [Required]
-            [StringLength(1000, ErrorMessage = "Description is too long.")]
-            public string Description { get; set; }
-
-            [Required]
-            [DataType(DataType.Date)]
-            public DateTime DateOfReport { get; set; }
-
-            [Required]
-            [StringLength(100, ErrorMessage = "Location is too long.")]
-            public string Location { get; set; }
-
-            [Required]
-            [DataType(DataType.Date)]
-            public DateTime DateSpotted { get; set; }
-
-            [Required]
-            [StringLength(10, ErrorMessage = "Time is too long.")]
-            public string TimeSpotted { get; set; }
-
-            [Required]
-            [StringLength(50, ErrorMessage = "Type of hazard is too long.")]
-            public string TypeOfHazard { get; set; }
-
-            [Required]
-            [StringLength(20, ErrorMessage = "Status is too long.")]
-            public string Status { get; set; }
-
-            [Required]
-            [EmailAddress]
-            public string ReporterEmail { get; set; }
-
-            [Phone]
-            public string ReporterPhone { get; set; }
-
-            public string OptionalPhotoPath { get; set; }
-            public int ReportId { get; internal set; }
-        }
-
-        public void OnGet()
-        {
-
-            // Initialize CurrentReport with a default instance
-            CurrentReport = new Report
+            try
             {
-                Title = "Sample Report",
-                Description = "Sample description",
-                DateOfReport = DateTime.Now,
-                Location = "Sample Location",
-                DateSpotted = DateTime.Now,
-                TimeSpotted = "12:00 PM",
-                TypeOfHazard = "Sample Hazard",
-                Status = "Open",
-                ReporterEmail = "sample@example.com",
-                ReporterPhone = "123-456-7890",
-                OptionalPhotoPath = null
-            };
+                _context.Reports.Add(CurrentReport);
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Report saved successfully.");
+                return RedirectToPage("./Confirmation");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error saving the report.");
+                ModelState.AddModelError(string.Empty, "An error occurred while saving the report. Please try again.");
+                return Page();
+            }
         }
     }
 }
