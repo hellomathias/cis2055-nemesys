@@ -1,0 +1,24 @@
+﻿@page
+@model NEMESYS.Areas.Identity.Pages.HallOfFame.Models.ReporterRanking
+@{
+}
+
+<h2>Reporter Hall of Fame</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Reporter Name</th>
+            <th>Reports Made</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ReporterName)</td>
+                <td>@Html.DisplayFor(modelItem => item.ReportCount)</td>
+            </tr>
+        }
+    </tbody>
+</table>
