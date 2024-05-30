@@ -1,10 +1,5 @@
 ﻿@page
-@using Microsoft.AspNetCore.Identity
-@using NEMESYS.Areas.Identity.Data
 @model NEMESYS.Areas.Identity.Pages.Investigations.InvestigationPageModel
-@using Microsoft.AspNetCore.Authorization
-@{
-}
 @{
     ViewData["Title"] = "Investigation Details";
 }
@@ -12,57 +7,77 @@
 <h2>Investigation Details</h2>
 
 <form method="post">
+    <input type="hidden" asp-for="CurrentInvestigation.ReportId" />
+    <input type="hidden" asp-for="CurrentInvestigation.InvestigatorId" />
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="Report.Location" style="font-weight: bold;">Location</label>
+        <input asp-for="Report.Location" class="form-control" style="width: 100%;" readonly />
+        <span asp-validation-for="Report.Location" class="text-danger"></span>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="Report.Description" style="font-weight: bold;">Description of Report</label>
+        <textarea asp-for="Report.Description" class="form-control" style="width: 100%; height: 100px;" readonly></textarea>
+        <span asp-validation-for="Report.Description" class="text-danger"></span>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="Report.TimeSpotted" style="font-weight: bold;">Time Spotted</label>
+        <input asp-for="Report.TimeSpotted" class="form-control" style="width: 100%;" readonly />
+        <span asp-validation-for="Report.TimeSpotted" class="text-danger"></span>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="Report.TypeOfHazard" style="font-weight: bold;">Type of Hazard</label>
+        <input asp-for="Report.TypeOfHazard" class="form-control" style="width: 100%;" readonly />
+        <span asp-validation-for="Report.TypeOfHazard" class="text-danger"></span>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="Report.ReporterEmail" style="font-weight: bold;">Reporter Email</label>
+        <input asp-for="Report.ReporterEmail" class="form-control" style="width: 100%;" readonly />
+        <span asp-validation-for="Report.ReporterEmail" class="text-danger"></span>
+    </div>
+
     <div style="margin-bottom: 20px;">
         <label asp-for="CurrentInvestigation.Description" style="font-weight: bold;">Description of Investigation</label>
         <textarea asp-for="CurrentInvestigation.Description" class="form-control" style="width: 100%; height: 100px;"></textarea>
+        <span asp-validation-for="CurrentInvestigation.Description" class="text-danger"></span>
     </div>
 
     <div style="margin-bottom: 20px;">
         <label asp-for="CurrentInvestigation.DateOfAction" style="font-weight: bold;">Date of Action</label>
         <input asp-for="CurrentInvestigation.DateOfAction" class="form-control" type="date" style="width: 100%;" />
+        <span asp-validation-for="CurrentInvestigation.DateOfAction" class="text-danger"></span>
     </div>
 
     <div style="margin-bottom: 20px;">
         <label asp-for="CurrentInvestigation.InvestigatorEmail" style="font-weight: bold;">Investigator Email</label>
-        <input asp-for="CurrentInvestigation.InvestigatorEmail" class="form-control" type="email" style="width: 100%;" />
+        <input asp-for="CurrentInvestigation.InvestigatorEmail" class="form-control" type="email" style="width: 100%;" readonly />
+        <span asp-validation-for="CurrentInvestigation.InvestigatorEmail" class="text-danger"></span>
     </div>
 
     <div style="margin-bottom: 20px;">
         <label asp-for="CurrentInvestigation.InvestigatorPhone" style="font-weight: bold;">Investigator Phone (optional)</label>
         <input asp-for="CurrentInvestigation.InvestigatorPhone" class="form-control" type="tel" style="width: 100%;" />
+        <span asp-validation-for="CurrentInvestigation.InvestigatorPhone" class="text-danger"></span>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label asp-for="SelectedStatus" style="font-weight: bold;">Report Status</label>
+        <select asp-for="SelectedStatus" class="form-control" style="width: 100%;">
+            <option value="Open">Open</option>
+            <option value="Being Investigated">Being Investigated</option>
+            <option value="Closed">Closed</option>
+            <option value="No Action Required">No Action Required</option>
+        </select>
+        <span asp-validation-for="SelectedStatus" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit Investigation</button>
 </form>
 
-@section Styles {
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-        .form-control {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .btn-primary {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-        .btn-primary:hover {
-            background-color: #45a049;
-        }
-    </style>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
