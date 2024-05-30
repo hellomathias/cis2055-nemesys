@@ -15,7 +15,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NEMESYS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67e544fc15b2a5ab0ec3141f884838231343cf4e")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b32e3e13ef1be3e88ba13c36367c82e6cc116a37")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("NEMESYS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NEMESYS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
