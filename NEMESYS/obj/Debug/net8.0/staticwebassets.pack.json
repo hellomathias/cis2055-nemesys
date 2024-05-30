@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\images\\reportunvoted.png",
+      "PackagePath": "staticwebassets\\images\\reportunvoted.png"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\images\\reportupvote.png",
+      "PackagePath": "staticwebassets\\images\\reportupvote.png"
+    },
+    {
       "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
@@ -243,6 +251,86 @@
     {
       "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\0cf09983-e879-4b3b-b80e-dd433f226deb_report3.jpg",
+      "PackagePath": "staticwebassets\\uploads\\0cf09983-e879-4b3b-b80e-dd433f226deb_report3.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\0e477025-4090-47dd-a7d3-c1bf011f3c8a_report1.jpg",
+      "PackagePath": "staticwebassets\\uploads\\0e477025-4090-47dd-a7d3-c1bf011f3c8a_report1.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\0e7baeac-9bae-45df-8e4e-a78e8c9a16fc_report10.jpg",
+      "PackagePath": "staticwebassets\\uploads\\0e7baeac-9bae-45df-8e4e-a78e8c9a16fc_report10.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\22903cd1-137a-4581-b525-87b307f370ed_404269985_2124979501182454_2626171992763083062_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\22903cd1-137a-4581-b525-87b307f370ed_404269985_2124979501182454_2626171992763083062_n.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\2706475f-2b68-4e73-b24e-792bd7f830a2_report5.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2706475f-2b68-4e73-b24e-792bd7f830a2_report5.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\4598bbb0-4fdc-4670-a3a9-d83e916b67f1_report4.jpg",
+      "PackagePath": "staticwebassets\\uploads\\4598bbb0-4fdc-4670-a3a9-d83e916b67f1_report4.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\5061b5f5-e2f5-40de-b322-310cf058d9bc_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\5061b5f5-e2f5-40de-b322-310cf058d9bc_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\60a3011a-fdf8-40ae-bc0e-04c44e4c4a1e_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\60a3011a-fdf8-40ae-bc0e-04c44e4c4a1e_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\6cb4dba1-fdf3-4c78-8d09-8c6e59cfd28f_report6.jpg",
+      "PackagePath": "staticwebassets\\uploads\\6cb4dba1-fdf3-4c78-8d09-8c6e59cfd28f_report6.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\84b34033-ffde-4a8e-8577-fc1706b7384f_report12.jpg",
+      "PackagePath": "staticwebassets\\uploads\\84b34033-ffde-4a8e-8577-fc1706b7384f_report12.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\9f05b176-1125-48db-a58b-54b1760dc390_report8.jpg",
+      "PackagePath": "staticwebassets\\uploads\\9f05b176-1125-48db-a58b-54b1760dc390_report8.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\b6ab0a25-d25c-4d00-a83f-717b606f139c_report7.jpg",
+      "PackagePath": "staticwebassets\\uploads\\b6ab0a25-d25c-4d00-a83f-717b606f139c_report7.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\bb0dc6b7-1089-45dd-a0e0-1b6d1a26e057_GridSpread.jpg",
+      "PackagePath": "staticwebassets\\uploads\\bb0dc6b7-1089-45dd-a0e0-1b6d1a26e057_GridSpread.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\bcd82acc-6d12-4874-a964-0ee8b26b4c12_report2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\bcd82acc-6d12-4874-a964-0ee8b26b4c12_report2.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\bed47b90-0cb1-40d7-838f-c73b657beb9b_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\bed47b90-0cb1-40d7-838f-c73b657beb9b_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\c06418ac-fb69-4ae3-bf50-096d6e49866c_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\c06418ac-fb69-4ae3-bf50-096d6e49866c_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\d34e9bee-6e07-413f-b871-f05fde5b7b5c_report9.jpg",
+      "PackagePath": "staticwebassets\\uploads\\d34e9bee-6e07-413f-b871-f05fde5b7b5c_report9.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\d4f2f526-de9a-4d60-bc27-c0b662cd0046_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\d4f2f526-de9a-4d60-bc27-c0b662cd0046_il_1140xN.5360670247_dv7j_(1)-transformed.jpeg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\fb9e9b7b-9992-4ce5-866d-45879cf2eda4_report2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\fb9e9b7b-9992-4ce5-866d-45879cf2eda4_report2.jpg"
+    },
+    {
+      "Id": "D:\\Users\\Mathias PC\\Documents\\GitHub\\cis2055-nemesys\\NEMESYS\\wwwroot\\uploads\\fefd8197-5645-48e3-9d74-d3176d16b95d_report11.jpg",
+      "PackagePath": "staticwebassets\\uploads\\fefd8197-5645-48e3-9d74-d3176d16b95d_report11.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.NEMESYS.Microsoft.AspNetCore.StaticWebAssets.props",
