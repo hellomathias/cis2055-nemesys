@@ -1,12 +1,31 @@
-﻿using NEMESYS.Areas.Identity.Pages.Reports.Models;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class Investigation
+namespace NEMESYS.Areas.Identity.Pages.Investigations.Models
 {
-    public int InvestigationId { get; set; }
-    public string Description { get; set; }
-    public DateTime DateOfAction { get; set; }
-    public string InvestigatorEmail { get; set; }
-    public string InvestigatorPhone { get; set; }
-    public int ReportId { get; set; }  // Foreign key linking to the Report
-    public Report RelatedReport { get; set; }  // Navigation property
+    public class Investigation
+    {
+        [Key]
+        public int InvestigationId { get; set; }
+
+        [Required]
+        public int ReportId { get; set; }
+
+        [Required]
+        [StringLength(1000, ErrorMessage = "Description is too long.")]
+        public string Description { get; set; }
+
+        [Required]
+        public DateTime DateOfAction { get; set; }
+
+        [Required]
+        public string InvestigatorId { get; set; }
+
+        [EmailAddress]
+        public string InvestigatorEmail { get; set; }
+
+        [Phone]
+        public string InvestigatorPhone { get; set; }
+    }
 }
