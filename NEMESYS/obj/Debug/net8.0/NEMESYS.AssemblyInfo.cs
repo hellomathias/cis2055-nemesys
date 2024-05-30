@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NEMESYS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89678abc337a79adbddb4b4e640def130a32f8e4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67e544fc15b2a5ab0ec3141f884838231343cf4e")]
 [assembly: System.Reflection.AssemblyProductAttribute("NEMESYS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NEMESYS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
