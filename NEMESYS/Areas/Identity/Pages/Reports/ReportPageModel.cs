@@ -31,12 +31,21 @@ namespace NEMESYS.Areas.Identity.Pages.Reports
         [BindProperty]
         public IFormFile? Photo { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                RedirectToPage("/Account/Login");
+                return;
+            }
+
             CurrentReport = new Report
             {
                 DateOfReport = DateTime.Today,
-                Status = "Open"
+                DateSpotted = DateTime.Today,
+                Status = "Open",
+                ReporterEmail = user.Email 
             };
         }
 
@@ -69,7 +78,7 @@ namespace NEMESYS.Areas.Identity.Pages.Reports
             {
                 _logger.LogInformation($"Photo uploaded: {Photo.FileName}");
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-                Directory.CreateDirectory(uploadsFolder); // Ensure the folder exists
+                Directory.CreateDirectory(uploadsFolder);
 
                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + Photo.FileName;
                 var filePath = Path.Combine(uploadsFolder, uniqueFileName);
