@@ -40,6 +40,19 @@
         .submit-report-btn:hover {
             background-color: #45a049;
         }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+        .form-group label {
+            margin-bottom: .5rem;
+        }
+
+        .form-group span.text-danger {
+            display: block;
+            margin-top: .25rem;
+        }
 </style>
 
 @if (!User.Identity.IsAuthenticated)
@@ -73,54 +86,64 @@ else
             <h2>Report Details</h2>
 
             <form method="post" enctype="multipart/form-data">
-                <label asp-for="CurrentReport.DateOfReport"></label>
-                <input asp-for="CurrentReport.DateOfReport" class="form-control">
-                <span asp-validation-for="CurrentReport.DateOfReport" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="CurrentReport.DateOfReport">Date of Report</label>
+                    <input asp-for="CurrentReport.DateOfReport" class="form-control" />
+                    <span asp-validation-for="CurrentReport.DateOfReport" class="text-danger"></span>
+                </div>
 
-                <label asp-for="CurrentReport.Location"></label>
-                <input asp-for="CurrentReport.Location" class="form-control">
-                <span asp-validation-for="CurrentReport.Location" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="CurrentReport.Location">Location</label>
+                    <input asp-for="CurrentReport.Location" class="form-control" />
+                    <span asp-validation-for="CurrentReport.Location" class="text-danger"></span>
+                </div>
 
-                <label asp-for="CurrentReport.DateSpotted"></label>
-                <input asp-for="CurrentReport.DateSpotted" class="form-control">
-                <span asp-validation-for="CurrentReport.DateSpotted" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="CurrentReport.DateSpotted">Date Spotted</label>
+                    <input asp-for="CurrentReport.DateSpotted" class="form-control" />
+                    <span asp-validation-for="CurrentReport.DateSpotted" class="text-danger"></span>
+                </div>
 
-                <label asp-for="CurrentReport.TimeSpotted"></label>
-                <input asp-for="CurrentReport.TimeSpotted" class="form-control">
-                <span asp-validation-for="CurrentReport.TimeSpotted" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="CurrentReport.TimeSpotted">Time Spotted</label>
+                    <input asp-for="CurrentReport.TimeSpotted" class="form-control" />
+                    <span asp-validation-for="CurrentReport.TimeSpotted" class="text-danger"></span>
+                </div>
 
-                <label asp-for="CurrentReport.TypeOfHazard"></label>
-                <select asp-for="CurrentReport.TypeOfHazard" class="form-control">
-                    <option value="Unsafe Act">Unsafe Act</option>
-                    <option value="Unsafe Condition">Unsafe Condition</option>
-                    <option value="Unsafe Equipment">Unsafe Equipment</option>
-                    <option value="Unsafe Structure">Unsafe Structure</option>
-                </select>
-                <span asp-validation-for="CurrentReport.TypeOfHazard" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="CurrentReport.TypeOfHazard">Type of Hazard</label>
+                    <select asp-for="CurrentReport.TypeOfHazard" class="form-control">
+                        <option value="Unsafe Act">Unsafe Act</option>
+                        <option value="Unsafe Condition">Unsafe Condition</option>
+                        <option value="Unsafe Equipment">Unsafe Equipment</option>
+                        <option value="Unsafe Structure">Unsafe Structure</option>
+                    </select>
+                    <span asp-validation-for="CurrentReport.TypeOfHazard" class="text-danger"></span>
+                </div>
 
-                <label asp-for="CurrentReport.Description"></label>
-                <textarea asp-for="CurrentReport.Description" class="form-control"></textarea>
-                <span asp-validation-for="CurrentReport.Description" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="CurrentReport.Description">Description</label>
+                    <textarea asp-for="CurrentReport.Description" class="form-control"></textarea>
+                    <span asp-validation-for="CurrentReport.Description" class="text-danger"></span>
+                </div>
 
-                <label asp-for="CurrentReport.Status"></label>
-                <select asp-for="CurrentReport.Status" class="form-control">
-                    <option value="Open">Open</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Closed">Closed</option>
-                </select>
-                <span asp-validation-for="CurrentReport.Status" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="CurrentReport.ReporterEmail">Reporter Email</label>
+                    <input asp-for="CurrentReport.ReporterEmail" class="form-control" />
+                    <span asp-validation-for="CurrentReport.ReporterEmail" class="text-danger"></span>
+                </div>
 
-                <label asp-for="CurrentReport.ReporterEmail"></label>
-                <input asp-for="CurrentReport.ReporterEmail" class="form-control">
-                <span asp-validation-for="CurrentReport.ReporterEmail" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="CurrentReport.ReporterPhone">Reporter Phone (Optional) </label>
+                    <input asp-for="CurrentReport.ReporterPhone" class="form-control" />
+                    <span asp-validation-for="CurrentReport.ReporterPhone" class="text-danger"></span>
+                </div>
 
-                <label asp-for="CurrentReport.ReporterPhone"></label>
-                <input asp-for="CurrentReport.ReporterPhone" class="form-control">
-                <span asp-validation-for="CurrentReport.ReporterPhone" class="text-danger"></span>
-
-                <label>Upload Photo</label>
-                <input type="file" name="Photo" class="form-control">
-                <span asp-validation-for="Photo" class="text-danger"></span>
+                <div class="form-group">
+                    <label>Upload Photo (Optional) </label>
+                    <input type="file" name="Photo" class="form-control" />
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+                </div>
 
                 <button type="submit" class="submit-report-btn">Submit Report</button>
             </form>

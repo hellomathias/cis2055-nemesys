@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NEMESYS.Areas.Identity.Pages.Reports.Models;
+using System;
 
 namespace NEMESYS.Areas.Pages.Reports
 {
@@ -11,16 +12,18 @@ namespace NEMESYS.Areas.Pages.Reports
 
         public void OnGet()
         {
+
+            DateTime dateTime = DateTime.MaxValue; 
+
             // Initialization or loading of CurrentReport for display/editing
             CurrentReport = new Report
             {
-                DateOfReport = DateTime.Today,
-                Location = "Initial Location",
-                DateSpotted = DateTime.Today,
+                DateOfReport = dateTime,
+                DateSpotted = DateTime.MaxValue,  
                 TimeSpotted = DateTime.Now.ToString("HH:mm"),
                 TypeOfHazard = "Unsafe Condition",
                 Description = "Initial description",
-                Status = "Open", // Assuming status is also managed
+                Status = "Closed", 
                 ReporterEmail = "reporter@example.com"
             };
         }
@@ -29,12 +32,12 @@ namespace NEMESYS.Areas.Pages.Reports
         {
             if (!ModelState.IsValid)
             {
-                return Page(); // Return the same page if validation fails
+                return Page(); 
             }
 
-            // Here you would save the CurrentReport to the database
+            
 
-            return RedirectToPage("./Index"); // Redirect to another page after successful post
+            return RedirectToPage("./Index"); 
         }
     }
 }
