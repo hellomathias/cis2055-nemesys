@@ -2,6 +2,7 @@
 @model NEMESYS.Areas.Identity.Pages.Reports.ReportBoardModel
 @inject Microsoft.AspNetCore.Identity.UserManager<NEMESYS.Areas.Identity.Data.ApplicationUser> UserManager
 @inject Microsoft.AspNetCore.Identity.SignInManager<NEMESYS.Areas.Identity.Data.ApplicationUser> SignInManager
+@inject Microsoft.AspNetCore.Identity.RoleManager<IdentityRole> RoleManager
 
 @{
     ViewData["Title"] = "Report Board";
@@ -27,12 +28,16 @@
             <th>Type of Hazard</th>
             <th>Status</th>
             <th>Actions</th>
+            <th>Upvotes</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var report in Model.Reports)
         {
             var isUserReport = report.UserId == UserManager.GetUserId(User);
+            var isInvestigator = User.IsInRole("Investigator");
+            var investigation = Model.Investigations.FirstOrDefault(i => i.ReportId == report.ReportId);
+            var hasUpvoted = Model.UserUpvotes.ContainsKey(report.ReportId) && Model.UserUpvotes[report.ReportId];
             <tr>
                 <td>@report.Location</td>
                 <td>@report.DateSpotted.ToString("yyyy-MM-dd")</td>
@@ -40,23 +45,38 @@
                 <td>@report.Status</td>
                 <td>
                     <a asp-page="./ReportDetails" asp-route-id="@report.ReportId" class="btn btn-primary">View Details</a>
-                    @if (isUserReport)
+                    @if (isUserReport && report.Status == "Open")
                     {
                         <a asp-page="./EditReport" asp-route-id="@report.ReportId" class="btn btn-secondary">Edit</a>
                         <form method="post" asp-page-handler="Delete" asp-route-id="@report.ReportId" style="display:inline;" onsubmit="return confirmDelete()">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     }
+                    @if (investigation != null)
+                    {
+                        <a asp-page="/Investigations/InvestigationDetails" asp-route-id="@report.ReportId" class="btn btn-primary">View Investigation</a>
+                        @if (isInvestigator && investigation.InvestigatorId == UserManager.GetUserId(User))
+                        {
+                            <a asp-page="/Investigations/InvestigationPage" asp-route-id="@report.ReportId" class="btn btn-warning">Continue Investigation</a>
+                        }
+                    }
+                    else if (isInvestigator && report.Status == "Open")
+                    {
+                        <a asp-page="/Investigations/InvestigationPage" asp-route-id="@report.ReportId" class="btn btn-warning">Investigate</a>
+                    }
+                </td>
+                <td>
+                    @if (!isInvestigator)
+                    {
+                        <form method="post" asp-page-handler="ToggleUpvote" asp-route-reportId="@report.ReportId" style="display:inline;">
+                            <button type="submit" class="btn btn-link p-0" style="border: none; background: none;">
+                                <img src="~/images/@((hasUpvoted) ? "reportupvote.png" : "reportunvoted.png")" alt="@((hasUpvoted) ? "Remove Upvote" : "Upvote")" style="width: 24px; height: 24px;" />
+                            </button>
+                        </form>
+                    }
+                    <span>@report.Upvotes</span>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-@section Scripts {
-    <script type="text/javascript">
-        function confirmDelete() {
-            return confirm('Are you sure you want to delete this report?');
-        }
-    </script>
-}
