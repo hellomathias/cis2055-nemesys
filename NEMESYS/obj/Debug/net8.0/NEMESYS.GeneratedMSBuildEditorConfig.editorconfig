@@ -38,6 +38,42 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/HallOfFame/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcSGFsbE9mRmFtZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/Investigations/InvestigationDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcSW52ZXN0aWdhdGlvbnNcSW52ZXN0aWdhdGlvbkRldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/Investigations/InvestigationPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcSW52ZXN0aWdhdGlvbnNcSW52ZXN0aWdhdGlvblBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/Reports/Confirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcUmVwb3J0c1xDb25maXJtYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/Reports/EditConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcUmVwb3J0c1xFZGl0Q29uZmlybWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/Reports/EditReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcUmVwb3J0c1xFZGl0UmVwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/Reports/ReportBoard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcUmVwb3J0c1xSZXBvcnRCb2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/Reports/ReportDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcUmVwb3J0c1xSZXBvcnREZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/Reports/ReportPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcUmVwb3J0c1xSZXBvcnRQYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/_AuthLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX0F1dGhMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,6 +88,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Views/AppRoles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwUm9sZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Views/Home/Index.cshtml]
@@ -72,6 +112,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Users/Mathias PC/Documents/GitHub/cis2055-nemesys/NEMESYS/Views/_ViewImports.cshtml]
