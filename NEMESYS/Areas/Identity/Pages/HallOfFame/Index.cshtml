@@ -1,6 +1,7 @@
-﻿@page
-@model NEMESYS.Areas.Identity.Pages.HallOfFame.Models.ReporterRanking
+﻿@model List<NEMESYS.Areas.Identity.Pages.HallOfFame.Models.ReporterRanking>
+
 @{
+    ViewData["Title"] = "Reporter Hall of Fame";
 }
 
 <h2>Reporter Hall of Fame</h2>
@@ -16,8 +17,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.ReporterName)</td>
-                <td>@Html.DisplayFor(modelItem => item.ReportCount)</td>
+                <td>@item.ReporterName</td>
+                <td>@item.ReportCount</td>
             </tr>
         }
     </tbody>
