@@ -1,0 +1,70 @@
+﻿@page "{id:int}"
+@model NEMESYS.Areas.Identity.Pages.Investigations.InvestigationDetailsModel
+@{
+    ViewData["Title"] = "Investigation Details";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h3>Report Details</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Location:</strong> @Model.Report.Location</p>
+        <p><strong>Date Spotted:</strong> @Model.Report.DateSpotted.ToString("yyyy-MM-dd")</p>
+        <p><strong>Type of Hazard:</strong> @Model.Report.TypeOfHazard</p>
+        <p><strong>Description:</strong> @Model.Report.Description</p>
+        @if (!string.IsNullOrEmpty(Model.Report.OptionalPhotoPath))
+        {
+            <div class="mt-3">
+                <img src="@Model.Report.OptionalPhotoPath" alt="Report Image" class="img-fluid" />
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Investigation Details</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Date of Action:</strong> @Model.Investigation.DateOfAction.ToString("yyyy-MM-dd")</p>
+        <p><strong>Description:</strong> @Model.Investigation.Description</p>
+        <p><strong>Investigator Email:</strong> @Model.Investigation.InvestigatorEmail</p>
+        <p><strong>Investigator Phone:</strong> @Model.Investigation.InvestigatorPhone</p>
+        <p><strong>Status:</strong> @Model.Report.Status</p>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .card {
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            padding: 1rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+}
